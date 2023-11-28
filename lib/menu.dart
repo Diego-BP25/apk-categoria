@@ -1,5 +1,4 @@
 import 'package:acceso/apptheme.dart';
-import 'package:acceso/eliminarCategoria.dart';
 import 'package:acceso/listarCategoria.dart';
 import 'package:acceso/registrarCategorias.dart';
 import 'package:flutter/material.dart';
