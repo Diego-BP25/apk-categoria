@@ -4,12 +4,12 @@ import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const Eliminar());
-}
+
 
 class Eliminar extends StatefulWidget {
-  const Eliminar({super.key});
+  final Map<String, dynamic> categoria;
+
+  const Eliminar({Key? key, required this.categoria}) : super(key: key);
 
   @override
   State<Eliminar> createState() => _EliminarState();
@@ -20,6 +20,7 @@ class _EliminarState extends State<Eliminar> {
   @override
   void initState() {
     super.initState();
+    textidediar.text = widget.categoria['_id'];
     deletecategorias();
   }
 
@@ -55,7 +56,7 @@ class _EliminarState extends State<Eliminar> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
+          padding: const EdgeInsets.all(25),
           child: Form(
             key: formContacto,
             child: Column(

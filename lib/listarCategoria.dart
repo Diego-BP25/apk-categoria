@@ -59,90 +59,99 @@ class ListarUsuariosState extends State<ListarCategorias> {
         title: const Text('Listar categorias'),
         backgroundColor: Colors.blue,
       ),
-      body: Column(
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: Column(
-                  children: [
-                    TextFormField(
-                      keyboardType: TextInputType.text,
-                      controller: textBuscador,
-                      decoration: const InputDecoration(
-                        labelText: 'Buscador',
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const Spacer(),
-              IconButton(
-                onPressed: () {
-                  getCategorias(nombre: textBuscador.text);
-                },
-                icon: const Icon(Icons.search),
-              ),
-            ],
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: data.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Column(
-                  children: [
-                    Row(children: [
-                      Expanded(
-                        child: Column(
-                          children: [
-                            ListTile(
-                              title: Text(data[index]['id']),
-                            ),
-                          ],
+      body: Padding(
+        padding: const EdgeInsets.all(25),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        keyboardType: TextInputType.text,
+                        controller: textBuscador,
+                        decoration: const InputDecoration(
+                          labelText: 'Buscador',
                         ),
                       ),
-                      Expanded(
-                        child: Text(data[index]['nombre']),
-                      ),
-                      Expanded(
-                        child: Text(data[index]['descripcion']),
-                      ),
-                      Expanded(
-                        child: Text(data[index]['estado']),
-                      ),
-                      Expanded(
-                          child: ListTile(
-                        leading: const Icon(Icons.edit),
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const Editar())); //cerrar el pop
-                          //setstate actualiza el contenido en pantalla
-                          setState(() {});
-                        },
-                      )),
-                      Expanded(
-                          child: ListTile(
-                        leading: const Icon(Icons.delete),
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const Eliminar())); //cerrar el pop
-                          //setstate actualiza el contenido en pantalla
-                          setState(() {});
-                        },
-                      ))
-                    ])
-                  ],
-                );
-              },
+                    ],
+                  ),
+                ),
+                const Spacer(),
+                IconButton(
+                  onPressed: () {
+                    getCategorias(nombre: textBuscador.text);
+                  },
+                  icon: const Icon(Icons.search),
+                ),
+              ],
             ),
-          ),
-        ],
+            Expanded(
+              child: ListView.builder(
+                itemCount: data.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Column(
+                    children: [
+                      Row(children: [
+                        Expanded(
+                          child: Column(
+                            children: [
+                              ListTile(
+                                title: Text(data[index]['id']),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Text(data[index]['nombre']),
+                        ),
+                        Expanded(
+                          child: Text(data[index]['descripcion']),
+                        ),
+                        Expanded(
+                          child: Text(data[index]['estado']),
+                        ),
+                        Expanded(
+                          child: ListTile(
+                            leading: const Icon(Icons.edit),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Editar(
+                                    categoria: data[
+                                        index], // Pasa los datos de la categoría seleccionada
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        Expanded(
+                          child: ListTile(
+                            leading: const Icon(Icons.delete),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Eliminar(
+                                    categoria: data[
+                                        index], // Pasa los datos de la categoría seleccionada
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        )
+                      ])
+                    ],
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

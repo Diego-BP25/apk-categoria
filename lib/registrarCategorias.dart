@@ -42,8 +42,6 @@ class _RegistrarState extends State<Registrar> {
       },
     );
     if (response.statusCode == 200) {
-      
-
       setState(() {
         print(response.body);
       });
@@ -63,7 +61,7 @@ class _RegistrarState extends State<Registrar> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
+          padding: const EdgeInsets.all(25),
           child: Form(
             key: formContacto,
             child: Column(
@@ -141,14 +139,15 @@ class _RegistrarState extends State<Registrar> {
                       return;
                     } else {
                       AwesomeDialog(
-            context: context,
-            dialogType: DialogType.success,
-            animType: AnimType.bottomSlide,
-            title: 'Correcto',
-            desc: 'Registro exitoso',
-            btnOkOnPress: () {postcategorias();},
-            ).show();
-                      
+                        context: context,
+                        dialogType: DialogType.success,
+                        animType: AnimType.bottomSlide,
+                        title: 'Correcto',
+                        desc: 'Registro exitoso',
+                        btnOkOnPress: () {
+                          postcategorias();
+                        },
+                      ).show();
                     }
                   },
                 )

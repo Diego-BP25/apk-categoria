@@ -4,12 +4,12 @@ import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const Editar());
-}
+
 
 class Editar extends StatefulWidget {
-  const Editar({super.key});
+  final Map<String, dynamic> categoria;
+
+  const Editar({Key? key, required this.categoria}) : super(key: key);
 
   @override
   State<Editar> createState() => _EditarState();
@@ -18,8 +18,16 @@ class Editar extends StatefulWidget {
 class _EditarState extends State<Editar> {
   List<dynamic> data = [];
   @override
-  void initState() {
-    super.initState();
+void initState() {
+  super.initState();
+
+  // Inicializar controladores con los datos de la categoría
+  textidediar.text = widget.categoria['_id'];
+  textid.text = widget.categoria['id'];
+  textnombre.text = widget.categoria['nombre'];
+  textdescripcion.text = widget.categoria['descripcion'];
+  textestado.text = widget.categoria['estado'];
+
     putcategorias();
   }
 
@@ -63,7 +71,7 @@ class _EditarState extends State<Editar> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
+          padding: const EdgeInsets.all(25),
           child: Form(
             key: formContacto,
             child: Column(
@@ -71,6 +79,7 @@ class _EditarState extends State<Editar> {
                 TextFormField(
                   keyboardType: TextInputType.text,
                   controller: textidediar,
+                  enabled: false,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.key),
                     prefixIconColor: Colors.blue,
@@ -84,6 +93,7 @@ class _EditarState extends State<Editar> {
                 TextFormField(
                   keyboardType: TextInputType.text,
                   controller: textid,
+                  enabled: false,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.tag),
                     prefixIconColor: Colors.blue,
